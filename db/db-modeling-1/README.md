@@ -1,7 +1,7 @@
 # 課題1
 ### 回答
 
-![sushi_order](https://user-images.githubusercontent.com/60952535/184472792-0aaba640-cd9f-44d2-9c1d-4c19a151ee85.png)
+![sushi_order](https://user-images.githubusercontent.com/60952535/184473411-8abd5829-6523-41b3-a5f9-a78cfaefe42e.png)
 
 ### 考えたこと
 

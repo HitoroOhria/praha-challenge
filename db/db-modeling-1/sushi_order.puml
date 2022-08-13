@@ -1,11 +1,14 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+note "監査カラムの記述は割愛" as n1
+
 class users {
   id: int
   name: string
   phone_number: string
 }
+note right: ユーザー
 
 class orders {
   id: int
@@ -13,18 +16,21 @@ class orders {
   paid: boolean
   ordered_at: datetime
 }
+note right: 注文
 
 class order_set_menus {
   order_id: int
   set_menu_id: int
   wasabi_removal: boolean
 }
+note right: 注文とセットメニューの\n中間テーブル（N:N）
 
 class order_sushi {
   order_id: int
   sushi_id: int
   wasabi_removal: boolean
 }
+note right: 注文と寿司の中間テーブル（N:N）
 
 class order_set_menus_options {
   order_id: int
@@ -32,6 +38,7 @@ class order_set_menus_options {
   wasabi_removal: boolean
   size_of_shari: int
 }
+note bottom: 注文ごとのセットメニューのオプション
 
 class order_sushi_options {
   order_id: int
@@ -39,6 +46,7 @@ class order_sushi_options {
   wasabi_removal: boolean
   size_of_shari: int
 }
+note bottom: 注文ごとの寿司のオプション
 
 class set_menus {
   id: int
@@ -46,6 +54,7 @@ class set_menus {
   price: int
   tax_included: boolean
 }
+note right: セットメニュー
 
 class sushi {
   id: int
@@ -53,6 +62,7 @@ class sushi {
   price: int
   tax_included: boolean
 }
+note right: 寿司
 
 users ||--o{ orders
 orders ||--o{ order_set_menus
