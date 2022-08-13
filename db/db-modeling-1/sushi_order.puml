@@ -5,8 +5,6 @@ class users {
   id: int
   name: string
   phone_number: string
-  created_at: datetime
-  updated_at: datetime
 }
 
 class orders {
@@ -14,24 +12,32 @@ class orders {
   user_id: int
   paid: boolean
   ordered_at: datetime
-  created_at: datetime
-  updated_at: datetime
 }
 
 class order_set_menus {
   order_id: int
   set_menu_id: int
   wasabi_removal: boolean
-  created_at: datetime
-  updated_at: datetime
 }
 
 class order_sushi {
   order_id: int
   sushi_id: int
   wasabi_removal: boolean
-  created_at: datetime
-  updated_at: datetime
+}
+
+class order_set_menus_options {
+  order_id: int
+  set_menu_id: int
+  wasabi_removal: boolean
+  size_of_shari: int
+}
+
+class order_sushi_options {
+  order_id: int
+  set_menu_id: int
+  wasabi_removal: boolean
+  size_of_shari: int
 }
 
 class set_menus {
@@ -39,8 +45,6 @@ class set_menus {
   name: string
   price: int
   tax_included: boolean
-  created_at: datetime
-  updated_at: datetime
 }
 
 class sushi {
@@ -48,14 +52,14 @@ class sushi {
   name: string
   price: int
   tax_included: boolean
-  created_at: datetime
-  updated_at: datetime
 }
 
 users ||--o{ orders
 orders ||--o{ order_set_menus
 orders ||--o{ order_sushi
-order_set_menus ||--|| set_menus
-order_sushi ||--|| sushi
+order_set_menus }o--|| set_menus
+order_sushi }o--|| sushi
+order_set_menus ||--|| order_set_menus_options
+order_sushi ||--|| order_sushi_options
 
 @enduml
