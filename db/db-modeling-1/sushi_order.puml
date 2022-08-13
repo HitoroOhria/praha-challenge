@@ -1,7 +1,8 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-note "監査カラムの記述は割愛" as n1
+note "監査カラムの記述は割愛しています" as n1
+note "データ型は種類がわかる程度に\nふんわりしています" as n2
 
 class users {
   id: int
@@ -14,39 +15,37 @@ class orders {
   id: int
   user_id: int
   paid: boolean
-  ordered_at: datetime
+  ordered_at: date
 }
 note right: 注文
 
 class order_set_menus {
   order_id: int
   set_menu_id: int
-  wasabi_removal: boolean
 }
 note right: 注文とセットメニューの\n中間テーブル（N:N）
 
 class order_sushi {
   order_id: int
   sushi_id: int
-  wasabi_removal: boolean
 }
 note right: 注文と寿司の中間テーブル（N:N）
 
-class order_set_menus_options {
+class set_menu_order_options {
   order_id: int
   set_menu_id: int
   wasabi_removal: boolean
   size_of_shari: int
 }
-note bottom: 注文ごとのセットメニューのオプション
+note bottom: セットメニューの注文オプション
 
-class order_sushi_options {
+class sushi_order_options {
   order_id: int
-  set_menu_id: int
+  sushi_id: int
   wasabi_removal: boolean
   size_of_shari: int
 }
-note bottom: 注文ごとの寿司のオプション
+note bottom: 寿司の注文オプション
 
 class set_menus {
   id: int
@@ -69,7 +68,7 @@ orders ||--o{ order_set_menus
 orders ||--o{ order_sushi
 order_set_menus }o--|| set_menus
 order_sushi }o--|| sushi
-order_set_menus ||--|| order_set_menus_options
-order_sushi ||--|| order_sushi_options
+order_set_menus ||--|| set_menu_order_options
+order_sushi ||--|| sushi_order_options
 
 @enduml
