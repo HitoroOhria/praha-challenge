@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class users {
+  id: int
+  name: string
+  phone_number: string
+  created_at: datetime
+  updated_at: datetime
+}
+
+class orders {
+  id: int
+  user_id: int
+  paid: boolean
+  ordered_at: datetime
+  created_at: datetime
+  updated_at: datetime
+}
+
+class order_set_menus {
+  order_id: int
+  set_menu_id: int
+  wasabi_removal: boolean
+  created_at: datetime
+  updated_at: datetime
+}
+
+class order_sushi {
+  order_id: int
+  sushi_id: int
+  wasabi_removal: boolean
+  created_at: datetime
+  updated_at: datetime
+}
+
+class set_menus {
+  id: int
+  name: string
+  price: int
+  tax_included: boolean
+  created_at: datetime
+  updated_at: datetime
+}
+
+class sushi {
+  id: int
+  name: string
+  price: int
+  tax_included: boolean
+  created_at: datetime
+  updated_at: datetime
+}
+
+users ||--o{ orders
+orders ||--o{ order_set_menus
+orders ||--o{ order_sushi
+order_set_menus ||--|| set_menus
+order_sushi ||--|| sushi
+
+@enduml
