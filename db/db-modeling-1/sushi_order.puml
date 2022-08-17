@@ -4,16 +4,16 @@
 note "監査カラムの記述は割愛しています" as n1
 note "データ型は種類がわかる程度に\nふんわりしています" as n2
 
-class users {
+class customer {
   id: int
   name: string
   phone_number: string
 }
-note right: ユーザー
+note right: 顧客
 
 class orders {
   id: int
-  user_id: int
+  customer_id: int
   paid: boolean
   ordered_at: date
 }
@@ -63,7 +63,7 @@ class sushi {
 }
 note right: 寿司
 
-users ||--o{ orders
+customer ||--o{ orders
 orders ||--o{ order_set_menus
 orders ||--o{ order_sushi
 order_set_menus }o--|| set_menus
