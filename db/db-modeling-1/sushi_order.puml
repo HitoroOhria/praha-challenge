@@ -15,6 +15,7 @@ class orders {
   id: int
   customer_id: int
   paid: boolean
+  request: string
   ordered_at: date
 }
 note right: 「注文」
