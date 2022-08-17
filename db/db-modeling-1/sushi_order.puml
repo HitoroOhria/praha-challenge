@@ -9,7 +9,7 @@ class customer {
   name: string
   phone_number: string
 }
-note right: 顧客
+note right: 「顧客」
 
 class orders {
   id: int
@@ -17,58 +17,56 @@ class orders {
   paid: boolean
   ordered_at: date
 }
-note right: 注文
+note right: 「注文」
 
-class order_set_menus {
+class order_menus {
   order_id: int
-  set_menu_id: int
+  menu_id: int
 }
 note right: 注文とセットメニューの\n中間テーブル（N:N）
 
-class order_sushi {
+class order_menu_options {
   order_id: int
-  sushi_id: int
-}
-note right: 注文と寿司の中間テーブル（N:N）
-
-class set_menu_order_options {
-  order_id: int
-  set_menu_id: int
+  menu_id: int
   wasabi_removal: boolean
   size_of_shari: int
 }
-note bottom: セットメニューの注文オプション
+note right: 「セットメニューの注文オプション」
 
-class sushi_order_options {
-  order_id: int
-  sushi_id: int
-  wasabi_removal: boolean
-  size_of_shari: int
-}
-note bottom: 寿司の注文オプション
-
-class set_menus {
+class menus {
   id: int
   name: string
   price: int
-  tax_included: boolean
+  menu_category_id: id
 }
-note right: セットメニュー
+note right: 「メニュー」\n販売するメニューを表現する\n商品を1個以上組み合わせたもの
 
-class sushi {
+class menu_category {
   id: int
   name: string
-  price: int
+}
+note right: 「メニューのカテゴリ」
+
+class menu_contents {
+  menu_id: int
+  product_id: int
+  product_count: int
+}
+note right: 「メニュー内容」\nメニューの内容を表現する（N:N）
+
+class product {
+  id: int
+  name: string
   tax_included: boolean
 }
-note right: 寿司
+note right: 「商品」\n販売する商品を表現する\n寿司なら一貫単位、それ以外なら一個単位で登録
 
-customer ||--o{ orders
-orders ||--o{ order_set_menus
-orders ||--o{ order_sushi
-order_set_menus }o--|| set_menus
-order_sushi }o--|| sushi
-order_set_menus ||--|| set_menu_order_options
-order_sushi ||--|| sushi_order_options
+customer ||--|{ orders
+orders ||--|{ order_menus
+order_menus ||--|| order_menu_options
+order_menus }|--|| menus
+menus ||--|{ menu_contents
+menus ||--|| menu_category
+menu_contents }|--|| product
 
 @enduml
