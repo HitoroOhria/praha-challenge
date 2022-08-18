@@ -16,7 +16,6 @@ class orders {
   id: int
   customer_id: int
   price: int
-  menu_count: int
   paid: boolean
   request: string
   ordered_at: datetime
@@ -32,6 +31,7 @@ note right: 注文とメニューの\n中間テーブル（N:N）
 class order_menu_options {
   order_id: int
   menu_id: int
+  count: int
   wasabi_removal: boolean
   size_of_shari: int
 }
