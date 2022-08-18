@@ -27,7 +27,7 @@ class order_menus {
   order_id: int
   menu_id: int
 }
-note right: 注文とセットメニューの\n中間テーブル（N:N）
+note right: 注文とメニューの\n中間テーブル（N:N）
 
 class order_menu_options {
   order_id: int
@@ -35,7 +35,7 @@ class order_menu_options {
   wasabi_removal: boolean
   size_of_shari: int
 }
-note right: 「セットメニューの注文オプション」
+note right: 「注文のメニューごとの注文オプション」
 
 class menus {
   id: int

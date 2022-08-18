@@ -1,0 +1,76 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+note "監査カラムの記述は割愛しています" as n1
+note "データ型は種類がわかる程度に\nふんわりしています" as n2
+note "「メニュー」と「商品」は論理削除とします\n注文テーブルの外部キー制約を守ると共に、過去情報を参照するためです\n(詳しく検討できていませんが、削除済みメニューテーブルなどを用意しても良いかもしれません)" as n3
+
+class customer {
+  id: int
+  name: string
+  phone_number: string
+}
+note right: 「顧客」
+
+class orders {
+  id: int
+  customer_id: int
+  price: int
+  menu_count: int
+  paid: boolean
+  request: string
+  ordered_at: date
+}
+note right: 「注文」
+
+class order_menus {
+  order_id: int
+  menu_id: int
+}
+note right: 注文とメニューの\n中間テーブル（N:N）
+
+class order_product_options {
+  order_id: int
+  product: int
+  wasabi_removal: boolean
+  size_of_shari: int
+}
+note right: 「注文の商品ごとの注文オプション」
+
+class menus {
+  id: int
+  name: string
+  price: int
+  menu_category_id: id
+}
+note right: 「メニュー」\n販売するメニューを表現する\n商品を1個以上組み合わせたもの
+
+class menu_category {
+  id: int
+  name: string
+}
+note right: 「メニューのカテゴリ」
+
+class menu_contents {
+  menu_id: int
+  product_id: int
+  product_count: int
+}
+note right: 「メニュー内容」\nメニューの内容を表現する（N:N）
+
+class product {
+  id: int
+  name: string
+  tax_included: boolean
+}
+note right: 「商品」\n販売する商品を表現する\n寿司なら一貫単位、それ以外なら一個単位で登録
+
+customer ||--|{ orders
+orders ||--|{ order_menus
+order_menus ||--|| order_product_options
+order_menus }|--|| menus
+menus ||--|{ menu_contents
+menus ||--|| menu_category
+menu_contents }|--|| product
+
+@enduml
