@@ -1,7 +1,7 @@
 # 課題1
 ### 回答
 
-![sushi_order](https://user-images.githubusercontent.com/60952535/184474429-0a131b64-7b12-4540-bb5f-c574e26666a3.png)
+![sushi_order_of_task1](https://user-images.githubusercontent.com/60952535/185267113-db283b83-cf9d-4a64-bfcd-b19b621bf888.png)
 
 ### テーブルと現実の対応関係の解説
 
@@ -111,7 +111,9 @@
   - アプリケーション側の計算方法を変更する形で対応
 - セットメニュー内でも個別の寿司ごとにさび抜きかどうかを選択したい
   - この仕様変更やばい、、、
-  - 注文オプションを商品ごとに保持する
+  - 注文オプションを商品ごとに保持する (order_product_options)
+
+![sushi_order_of_task3](https://user-images.githubusercontent.com/60952535/185267123-f5452534-0b02-48ca-98a4-530744e7e0f9.png)
 
 # 任意課題
 
