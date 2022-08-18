@@ -61,7 +61,6 @@ note right: 「メニュー内容」\nメニューの内容を表現する（N:N
 class product {
   id: int
   name: string
-  tax_included: boolean
 }
 note right: 「商品」\n販売する商品を表現する\n寿司なら一貫単位、それ以外なら一個単位で登録
 
