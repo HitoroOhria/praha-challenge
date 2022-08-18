@@ -3,6 +3,7 @@
 
 note "監査カラムの記述は割愛しています" as n1
 note "データ型は種類がわかる程度に\nふんわりしています" as n2
+note "「メニュー」と「商品」は論理削除とします\n注文テーブルの外部キー制約を守ると共に、過去情報を参照するためです\n(詳しく検討できていませんが、削除済みメニューテーブルなどを用意しても良いかもしれません)" as n3
 
 class customer {
   id: int
@@ -14,6 +15,8 @@ note right: 「顧客」
 class orders {
   id: int
   customer_id: int
+  price: int
+  menu_count: int
   paid: boolean
   request: string
   ordered_at: date
