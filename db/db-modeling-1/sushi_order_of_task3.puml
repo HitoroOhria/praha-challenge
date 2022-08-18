@@ -28,14 +28,21 @@ class order_menus {
 }
 note right: 注文とメニューの\n中間テーブル（N:N）
 
-class order_product_options {
+class order_menu_options {
   order_id: int
-  product: int
+  menu_id: int
   count: int
+}
+note right: 「注文のメニューごとの\n注文オプション」
+
+class order_menu_product_options {
+  order_id: int
+  menu_id: int
+  product: int
   wasabi_removal: boolean
   size_of_shari: int
 }
-note right: 「注文の商品ごとの注文オプション」
+note right: 「注文のメニューの商品ごとの\n注文オプション」
 
 class menus {
   id: int
@@ -66,7 +73,8 @@ note right: 「商品」\n販売する商品を表現する\n寿司なら一貫�
 
 customer ||--|{ orders
 orders ||--|{ order_menus
-order_menus ||--|| order_product_options
+order_menus ||--|| order_menu_options
+order_menu_options ||--|{ order_menu_product_options
 order_menus }|--|| menus
 menus ||--|{ menu_contents
 menus ||--|| menu_category
