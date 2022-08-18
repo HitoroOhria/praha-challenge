@@ -1,7 +1,7 @@
 # 課題1
 ### 回答
 
-![sushi_order_of_task1](https://user-images.githubusercontent.com/60952535/185267113-db283b83-cf9d-4a64-bfcd-b19b621bf888.png)
+![sushi_order_of_task1](https://user-images.githubusercontent.com/60952535/185267438-293e4a49-1d16-4d52-a14e-17409909157e.png)
 
 ### テーブルと現実の対応関係の解説
 
@@ -113,7 +113,7 @@
   - この仕様変更やばい、、、
   - 注文オプションを商品ごとに保持する (order_product_options)
 
-![sushi_order_of_task3](https://user-images.githubusercontent.com/60952535/185267123-f5452534-0b02-48ca-98a4-530744e7e0f9.png)
+![sushi_order_of_task3](https://user-images.githubusercontent.com/60952535/185267430-fcef0e91-ff30-4cf0-b84f-8306d4390a3b.png)
 
 # 任意課題
 

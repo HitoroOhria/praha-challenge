@@ -19,7 +19,7 @@ class orders {
   menu_count: int
   paid: boolean
   request: string
-  ordered_at: date
+  ordered_at: datetime
 }
 note right: 「注文」
 
