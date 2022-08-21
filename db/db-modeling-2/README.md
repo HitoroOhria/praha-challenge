@@ -9,39 +9,39 @@
 ```mermaid
 erDiagram
 
-users }|--|{ users_workspaces : "N:N"
-users }|--|{ users_channels : "N:N"
+users }|--o{ users_workspaces : "N:N"
+users }|--o{ users_channels : "N:N"
 users {
     id int PK
     name string 
 }
 
-users_workspaces }|--|{ workspaces : "N:N"
+users_workspaces }o--|{ workspaces : "N:N"
 users_workspaces {
     user_id int FK
     workspace_id int FK
 }
 
-workspaces ||--|{ channels : "1:N"
+workspaces ||--o{ channels : "1:N"
 workspaces {
     id int PK
     name string
 }
 
-users_channels }|--|{ channels : "N:N"
+users_channels }o--|{ channels : "N:N"
 users_channels {
     user_id int FK
     channel_id int FK
 }
 
-channels }|--|{ messages : "N:N"
+channels }|--o{ messages : "N:N"
 channels {
     id int PK
     workspace_id int FK
     name string
 }
 
-messages ||--|{ messages : "1:N"
+messages ||--o{ messages : "1:N"
 messages {
     id int PK
     channel_id int FK
