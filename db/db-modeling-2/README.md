@@ -9,36 +9,42 @@
 ```mermaid
 erDiagram
 
+users }|--|{ users_workspaces : "N:N"
+users }|--|{ users_channels : "N:N"
 users {
-    id int
+    id int PK
     name string 
 }
 
+users_workspaces }|--|{ workspaces : "N:N"
 users_workspaces {
-    user_id int
-    workspace_id int
+    user_id int FK
+    workspace_id int FK
 }
 
+workspaces ||--|{ channels : "1:N"
 workspaces {
-    id int
+    id int PK
     name string
 }
 
+users_channels }|--|{ channels : "N:N"
 users_channels {
-    user_id int
-    channel_id int
+    user_id int FK
+    channel_id int FK
 }
 
+channels }|--|{ messages : "N:N"
 channels {
-    id int
-    workspace_id int
+    id int PK
+    workspace_id int FK
     name string
 }
 
 messages {
-    id int
-    channel_id int
-    user_id int
+    id int PK
+    channel_id int FK
+    user_id int FK
     text string
     updated_at datetime
     created_at datetime
@@ -49,12 +55,6 @@ message_threads {
     message_id int
 }
 
-users }|--|{ users_workspaces : "N:N"
-users }|--|{ users_channels : "N:N"
-users_workspaces }|--|{ workspaces : "N:N"
-workspaces ||--|{ channels : "1:N"
-users_channels }|--|{ channels : "N:N"
-channels }|--|{ messages : "N:N"
 messages ||--|{ message_threads : "1:N"
 
 ```
