@@ -41,21 +41,16 @@ channels {
     name string
 }
 
+messages ||--|{ messages : "1:N"
 messages {
     id int PK
     channel_id int FK
     user_id int FK
     text string
     updated_at datetime
+    source_message_id int FK "NULL可"
     created_at datetime
 }
-
-message_threads {
-    source_message_id int
-    message_id int
-}
-
-messages ||--|{ message_threads : "1:N"
 
 ```
 
@@ -64,17 +59,15 @@ messages ||--|{ message_threads : "1:N"
 #### 横断機能
 
 ```sql
--- ユーザーが所属するチャネル内の全メッセージを取得
+-- ユーザーが所属するチャネル内の全メッセージを取得し、検索文字を含むものに絞り込み
 SELECT m.*, m2.*
 FROM user_channels uc
     JOIN channels c 
         ON uc.channel_id = c.id
-    JOIN message m
-        ON c.id = m.channel_id
-    LEFT OUTER JOIN message_threads mt
-        ON m.id = mt.source_message_id
+    JOIN message m1
+        ON c.id = m1.channel_id
     JOIN message m2
-        ON mt.message_id = m2.id
+        ON m1.id = m2.source_message_id
 WHERE uc.user_id = 1
     AND (m.text LIKE '%検索文字%' OR mt.text LIKE '%検索文字%')
 ;
@@ -85,28 +78,22 @@ WHERE uc.user_id = 1
 
 ```sql
 --  メッセージ1のスレッドを取得
-SELECt m.*
-FROM message_threads mt
-    JOIN message m
-        ON mt.message_id = m.id
-WHERE mt.source_message_id = 1
+SELECt *
+FROM message
+WHERE source_message_id = 1
 ;
 
 -- チャンネル1のスレッド以外のメッセージを取得
-SELECT m.*
+SELECT *
 FROM message m
-    LEFT OUTER JOIN message_threads mt
-        ON m.id = mt.source_message_id
-WHERE m.channel_id = 1
+WHERE source_message_id IS NULL
 ;
 
 -- チャンネル1のスレッドも含む全メッセージを取得
-SELECT m.*, mt.*
-FROM message m
-    LEFT OUTER JOIN message_threads mt
-        ON m.id = mt.source_message_id
+SELECT m1.*, m2.*
+FROM message m1
     JOIN message m2
-        ON mt.message_id = m2.id
+        ON m2.source_message_id = m1.id
 WHERE m.channel_id = 1
 ;
 ```
@@ -115,6 +102,18 @@ WHERE m.channel_id = 1
 ### 考えたこと
 
 - メッセージとスレッドメッセージの関係を表現する際に、1つのテーブルで表現するか？中間テーブルを用意するか？
-
-
-- メッセージが増えたときの大量データによる検索性能低下問題をどう考慮するか？
+  - 結論
+    - 1つのテーブルで表現する
+  - 理由
+    - パフォーマンスへの影響が大きいと感じたため
+      - メッセージは数が多い
+    - 1つのテーブル
+      - メリット
+        - JOIN コストの軽減
+      - デメリット
+        - 責務の重複 (データ表現 + 関係性表現)
+    - 中間テーブル
+      - メリット
+        - レコード削除の整合性担保 (ON DELETE CASCADE 制約)
+      - デメリット
+        - JOIN コストの増加
