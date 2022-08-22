@@ -60,16 +60,14 @@ messages {
 
 ```sql
 -- ユーザーが所属するチャネル内の全メッセージを取得し、検索文字を含むものに絞り込み
-SELECT m.*, m2.*
+SELECT m.*
 FROM user_channels uc
     JOIN channels c 
         ON uc.channel_id = c.id
-    JOIN message m1
-        ON c.id = m1.channel_id
-    JOIN message m2
-        ON m1.id = m2.source_message_id
+    JOIN message m
+        ON c.id = m.channel_id
 WHERE uc.user_id = 1
-    AND (m.text LIKE '%検索文字%' OR mt.text LIKE '%検索文字%')
+    AND m.text LIKE '%検索文字%'
 ;
 ```
 
@@ -77,24 +75,24 @@ WHERE uc.user_id = 1
 ### SQL メモ
 
 ```sql
---  メッセージ1のスレッドを取得
+-- チャンネル1のスレッドも含む全メッセージを取得
+SELECT *
+FROM message
+WHERE channel_id = 1
+;
+
+--  メッセージ1のスレッドメッセージを取得
 SELECt *
 FROM message
-WHERE source_message_id = 1
+WHERE channel_id = 1
+    source_message_id = 1
 ;
 
 -- チャンネル1のスレッド以外のメッセージを取得
 SELECT *
-FROM message m
-WHERE source_message_id IS NULL
-;
-
--- チャンネル1のスレッドも含む全メッセージを取得
-SELECT m1.*, m2.*
-FROM message m1
-    JOIN message m2
-        ON m2.source_message_id = m1.id
-WHERE m.channel_id = 1
+FROM message
+WHERE channel_id = 1
+    AND source_message_id IS NULL
 ;
 ```
 
