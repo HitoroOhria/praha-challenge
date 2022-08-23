@@ -75,7 +75,7 @@ WHERE uc.user_id = 1
 ### SQL メモ
 
 ```sql
--- チャンネル1のスレッドも含む全メッセージを取得
+-- チャネル1のスレッドも含む全メッセージを取得
 SELECT *
 FROM message
 WHERE channel_id = 1
@@ -88,7 +88,7 @@ WHERE channel_id = 1
     source_message_id = 1
 ;
 
--- チャンネル1のスレッド以外のメッセージを取得
+-- チャネル1のスレッド以外のメッセージを取得
 SELECT *
 FROM message
 WHERE channel_id = 1
