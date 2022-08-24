@@ -47,8 +47,8 @@ messages {
     channel_id int FK
     user_id int FK
     text string
-    updated_at datetime
     source_message_id int FK "NULL可"
+    updated_at datetime
     created_at datetime
 }
 
@@ -119,3 +119,8 @@ WHERE channel_id = 1
         - レコード削除の整合性担保 (ON DELETE CASCADE 制約)
       - デメリット
         - JOIN コストの増加
+- メッセージにルートフラフを保持するか？
+  - 結論
+    - 保持しない
+  - 理由
+    - source_message_id が NULL であれば、ルートメッセージであることが確定されるため
