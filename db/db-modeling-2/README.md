@@ -41,6 +41,7 @@ channels {
     name string
 }
 
+users ||--o{ messages : "1:N"
 messages ||--o{ messages : "1:N"
 messages {
     id int PK
