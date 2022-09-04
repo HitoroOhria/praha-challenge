@@ -11,7 +11,7 @@ users {
   id int PK
 }
 
-update_directory_events ||--|| directories : "1:1"
+update_directory_events }o--|| directories : "N:1"
 update_directory_events {
   user_id int PK
   directory_id int PK
@@ -32,7 +32,7 @@ directory_closure {
   child_id int PK
 }
 
-update_document_events ||--|| documents : "1:1"
+update_document_events }o--|| documents : "N:1"
 update_document_events {
   user_id int PK
   document_id int PK
