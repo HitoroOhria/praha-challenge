@@ -6,11 +6,9 @@
 erDiagram
 
 users ||--o{ create_directory_events : "1:N"
-users ||--o{ allow_read_directory_events : "1:N"
 users ||--o{ update_directory_events : "1:N"
 users ||--o{ delete_directory_events : "1:N"
 users ||--o{ create_document_events : "1:N"
-users ||--o{ allow_read_document_events : "1:N"
 users ||--o{ update_document_events : "1:N"
 users ||--o{ delete_document_events : "1:N"
 users {
@@ -22,13 +20,6 @@ create_directory_events {
   user_id int PK
   directory_id int PK
   created_at datetime
-}
-
-allow_read_directory_events ||--|| directories : "1:1"
-allow_read_directory_events {
-  user_id int PK
-  directory_id int PK
-  allowed_at datetime
 }
 
 update_directory_events ||--|| directories : "1:1"
@@ -64,13 +55,6 @@ create_document_events {
   user_id int PK
   document_id int PK
   created_at datetime
-}
-
-allow_read_document_events ||--|| documents : "1:1"
-allow_read_document_events {
-  user_id int PK
-  document_id int PK
-  allowed_at datetime
 }
 
 update_document_events ||--|| documents : "1:1"
