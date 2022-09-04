@@ -10,15 +10,15 @@ users {
   id int PK
 }
 
-directories ||--o{ directory_closure : "1:N"
+directories ||--o{ closure_directories : "1:N"
 directories ||--|{ documents : "1:N"
 directories {
   id int PK
   name string
 }
 
-directory_closure ||--|{ directories : "1:N"
-directory_closure {
+closure_directories ||--|{ directories : "1:N"
+closure_directories {
   parent_id int PK
   child_id int PK
 }
@@ -42,10 +42,9 @@ documents {
 ### テーブル説明
 
 - users: ユーザー
-- directory_XXX_events: ディレクトリのイベント
 - directories: ディレクトリ
-- directory_closure: ディレクトリの閉包テーブル
-- document_XXX_events: ドキュメントのイベント
+- closure_directories: ディレクトリの閉包テーブル
+- update_document_events: ドキュメントの更新イベント
 - documents: ドキュメント
 
 ### 考えたこと
