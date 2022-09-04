@@ -5,18 +5,9 @@
 ```mermaid
 erDiagram
 
-users ||--o{ update_directory_events : "1:N"
 users ||--o{ update_document_events : "1:N"
 users {
   id int PK
-}
-
-update_directory_events }o--|| directories : "N:1"
-update_directory_events {
-  user_id int PK
-  directory_id int PK
-  name string
-  updated_at datetime
 }
 
 directories ||--o{ directory_closure : "1:N"
