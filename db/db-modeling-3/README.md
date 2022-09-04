@@ -99,9 +99,9 @@ documents {
 ### テーブル説明
 
 - users: ユーザー
-- directory_XXX_events: ディレクリのイベント
-- directories: ディレクリ
-- directory_closure: ディレクリの閉包テーブル
+- directory_XXX_events: ディレクトリのイベント
+- directories: ディレクトリ
+- directory_closure: ディレクトリの閉包テーブル
 - document_XXX_events: ドキュメントのイベント
 - documents: ドキュメント
 
@@ -153,7 +153,7 @@ document_orders {
         - 上手く表現できれば、入れ替えの変更レコード数を小さくできるかも
     - 別テーブルで連番で表現する
         - あまり意味はない
-    - ディレクリテーブルに配列型を持つ
+    - ディレクトリテーブルに配列型を持つ
         - 第一正規形に反する
     - New!! 双方向リストを持つ
 - 考えるべきリスクは何か？
