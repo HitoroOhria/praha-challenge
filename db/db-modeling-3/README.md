@@ -93,6 +93,7 @@ documents {
   document_id int FK
   text text
 }
+
 ```
 
 ### テーブル説明
@@ -130,11 +131,18 @@ documents {
 ```mermaid
 erDiagram
 
+documents ||--|| document_orders : "1:1"
 documents {
   id int PK
   document_id int FK
   order_number int
   text text
+}
+
+document_orders {
+  document_id int PK
+  previous_document_id int FK "NULL可(先頭のドキュメントを表現するため)"
+  next_document_id int FK "NULL可(最後尾のドキュメントを表現するため)"
 }
 ```
 
@@ -147,6 +155,7 @@ documents {
         - あまり意味はない
     - ディレクリテーブルに配列型を持つ
         - 第一正規形に反する
+    - New!! 双方向リストを持つ
 - 考えるべきリスクは何か？
     - 順番を入れ替えるときのコスト
     - 他のディレクトリへ移動させるときのコスト
