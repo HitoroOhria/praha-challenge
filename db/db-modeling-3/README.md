@@ -6,9 +6,7 @@
 erDiagram
 
 users ||--o{ update_directory_events : "1:N"
-users ||--o{ delete_directory_events : "1:N"
 users ||--o{ update_document_events : "1:N"
-users ||--o{ delete_document_events : "1:N"
 users {
   id int PK
 }
@@ -19,13 +17,6 @@ update_directory_events {
   directory_id int PK
   name string
   updated_at datetime
-}
-
-delete_directory_events ||--|| directories : "1:1"
-delete_directory_events {
-  user_id int PK
-  directory_id int PK
-  deleted_at datetime
 }
 
 directories ||--o{ directory_closure : "1:N"
@@ -47,13 +38,6 @@ update_document_events {
   document_id int PK
   text string
   updated_at datetime
-}
-
-delete_document_events ||--|| documents : "1:1"
-delete_document_events {
-  user_id int PK
-  directory_id int PK
-  deleted_at datetime
 }
 
 documents {
