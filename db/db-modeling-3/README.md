@@ -5,21 +5,12 @@
 ```mermaid
 erDiagram
 
-users ||--o{ create_directory_events : "1:N"
 users ||--o{ update_directory_events : "1:N"
 users ||--o{ delete_directory_events : "1:N"
-users ||--o{ create_document_events : "1:N"
 users ||--o{ update_document_events : "1:N"
 users ||--o{ delete_document_events : "1:N"
 users {
   id int PK
-}
-
-create_directory_events ||--|| directories : "1:1"
-create_directory_events {
-  user_id int PK
-  directory_id int PK
-  created_at datetime
 }
 
 update_directory_events ||--|| directories : "1:1"
@@ -48,13 +39,6 @@ directory_closure ||--|{ directories : "1:N"
 directory_closure {
   parent_id int PK
   child_id int PK
-}
-
-create_document_events ||--|| documents : "1:1"
-create_document_events {
-  user_id int PK
-  document_id int PK
-  created_at datetime
 }
 
 update_document_events ||--|| documents : "1:1"
