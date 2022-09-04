@@ -8,6 +8,7 @@ erDiagram
 users ||--o{ update_document_events : "1:N"
 users {
   id int PK
+  name string
 }
 
 directories ||--o{ closure_directories : "1:N"
