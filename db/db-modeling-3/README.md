@@ -35,6 +35,7 @@ update_directory_events ||--|| directories : "1:1"
 update_directory_events {
   user_id int PK
   directory_id int PK
+  name string
   updated_at datetime
 }
 
@@ -95,6 +96,13 @@ documents {
 ```
 
 ### テーブル説明
+
+- users: ユーザー
+- directory_XXX_events: ディレクリのイベント
+- directories: ディレクリ
+- directory_closure: ディレクリの閉包テーブル
+- document_XXX_events: ドキュメントのイベント
+- documents: ドキュメント
 
 ### 考えたこと
 
