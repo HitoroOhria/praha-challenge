@@ -33,7 +33,7 @@ update_document_events {
 
 documents {
   id int PK
-  document_id int FK
+  directory_id int FK
   text text
 }
 
