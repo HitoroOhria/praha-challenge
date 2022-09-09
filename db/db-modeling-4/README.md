@@ -27,14 +27,14 @@ member {
 }
 
 tasks ||--|{ task_assigned_members : "many"
-tasks ||--|| remind_type : "one"
+tasks |o--|| remind_type : "one"
 tasks ||--o| minute_reminders : "one"
 tasks ||--o{ weekly_reminder_days : "many"
 tasks ||--o| monthly_reminders : "one"
 tasks {
   int id PK
   int request_user_id FK
-  int remind_type FK
+  int remind_type_id FK
   string text
   boolean done
   date start_day
@@ -57,7 +57,7 @@ minute_reminders {
   int every_minutes
 }
 
-weekly_reminder_days |o--|| days : "one"
+weekly_reminder_days |o--|| day : "one"
 weekly_reminder_days {
   int task_id FK
   int day_id FK
@@ -68,7 +68,7 @@ monthly_reminders {
   int day "日付"
 }
 
-days {
+day {
   int id PK "0: 月, 1: 火, 2: 水, 3: 木, 4: 金, 5: 土, 6: 日"
   string name
 }
@@ -88,7 +88,7 @@ days {
   - 曜日は複数指定できる
 - monthly_reminders: 毎月の日付ごとのリマインド
   - 毎月X日ごとを表現する
-- days: 曜日
+- day: 曜日
 
 ### 考えたこと
 
