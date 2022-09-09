@@ -53,6 +53,7 @@ remind_type {
 
 minute_reminders {
   int task_id FK
+  datetime start_time
   int every_minutes
 }
 
@@ -79,12 +80,13 @@ days {
 - tasks: タスク
 - task_assigned_members: タスクとアサインされたメンバーの中間テーブル
 - remind_type: リマインドの種類
-- minute_reminders: 毎分ごとリマインド
+- minute_reminders: 毎分ごとのリマインド
   - X分ごと、X時間ごと、毎日、X日ごと、X週ごとを表現する
-- weekly_reminder_days: 毎週の曜日ごとリマインド
-  - 毎週X曜日ごと、毎週平日ごと、毎週X曜日とX曜日と...ごとを表現する
+  - 1時間ごとだと 60min、毎日だと 1440min、1週間ごとだと 10080min の値を設定する
+- weekly_reminder_days: 毎週の曜日ごとのリマインド
+  - 毎週X曜日ごと、毎週平日ごと、毎週X,Y,Z...曜日ごとを表現する
   - 曜日は複数指定できる
-- monthly_reminders: 毎月の日付ごとリマインド
+- monthly_reminders: 毎月の日付ごとのリマインド
   - 毎月X日ごとを表現する
 - days: 曜日
 
@@ -113,5 +115,5 @@ days {
 ### 追加仕様
 
 - リマンドの開始時刻を指定できるようにしたい
-  - 各リマンドタイプのテーブルに、開始時刻を表すカラムを追加する
+  - タスクテーブルに開始時刻を表すカラムを追加する
 
