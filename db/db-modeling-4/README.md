@@ -42,15 +42,21 @@ minute_reminders {
   int remind_minute
 }
 
+weekly_reminder_days |o--|| days : "one"
 weekly_reminder_days {
   int task_id FK
-  int day "0: 月, 1: 火, 2: 水, 3: 木, 4: 金, 5: 土, 6: 日"
+  int day_id 
 }
 
 monthly_reminders {
   int task_id PK "FK"
   int month 
   int day
+}
+
+days {
+  int id PK "0: 月, 1: 火, 2: 水, 3: 木, 4: 金, 5: 土, 6: 日"
+  string name
 }
 ```
 
