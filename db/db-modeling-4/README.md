@@ -20,7 +20,7 @@ member {
   string name
 }
 
-tasks ||--o{ task_assigned_members : "many"
+tasks ||--|{ task_assigned_members : "many"
 tasks ||--|| remind_type : "one"
 tasks ||--o| minute_reminders : "one"
 tasks ||--o{ weekly_reminder_days : "many"
@@ -47,16 +47,17 @@ remind_type {
 
 minute_reminders {
   int task_id FK
+  int every_minutes
 }
 
 weekly_reminder_days |o--|| days : "one"
 weekly_reminder_days {
   int task_id FK
-  int day_id 
+  int day_id FK
 }
 
 monthly_reminders {
-  int task_id PK "FK"
+  int task_id FK
   int day "日付"
 }
 
