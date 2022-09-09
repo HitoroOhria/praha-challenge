@@ -44,13 +44,13 @@ minute_reminders {
 
 weekly_reminder_days {
   int task_id FK
-  int remind_day
+  int day "0: 月, 1: 火, 2: 水, 3: 木, 4: 金, 5: 土, 6: 日"
 }
 
 monthly_reminders {
   int task_id PK "FK"
-  int remind_month 
-  int remind_day
+  int month 
+  int day
 }
 ```
 
