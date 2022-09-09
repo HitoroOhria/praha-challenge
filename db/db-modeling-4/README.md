@@ -6,6 +6,7 @@
 
 - 毎週の曜日ごとのリマンドでは、複数の曜日を指定できる
 - 毎月の日付ごとのリマンドでは、1つの日付のみを指定できる
+- リマンドの開始時刻は指定できない
 
 ### 回答
 
@@ -46,8 +47,6 @@ remind_type {
 
 minute_reminders {
   int task_id FK
-  datetime start_time
-  int remind_minute
 }
 
 weekly_reminder_days |o--|| days : "one"
@@ -58,8 +57,7 @@ weekly_reminder_days {
 
 monthly_reminders {
   int task_id PK "FK"
-  int month 
-  int day
+  int day "日付"
 }
 
 days {
@@ -81,6 +79,7 @@ days {
   - 曜日は複数指定できる
 - monthly_reminders: 毎月の日付ごとリマインド
   - 毎月X日ごとを表現する
+- days: 曜日
 
 ### 考えたこと
 
@@ -103,3 +102,9 @@ days {
     - 正規化するため
       - すべてタスクテーブルに集めると、NULL となるカラムが出てくる
       - リマンドタイプごとにテーブルが増えるデメリットがあるが、正規化してみる
+
+### 追加仕様
+
+- リマンドの開始時刻を指定できるようにしたい
+  - 各リマンドタイプのテーブルに、開始時刻を表すカラムを追加する
+
