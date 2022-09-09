@@ -4,6 +4,7 @@
 
 今回は以下の仕様としました
 
+- リマンドメッセージは Slack アプリケーションの DM で送信する
 - 毎週の曜日ごとのリマンドでは、複数の曜日を指定できる
 - 毎月の日付ごとのリマンドでは、1つの日付のみを指定できる
 - X日ごと、毎週X曜日ごと、毎月X日ごとのリマインドでは時間の指定はできない
@@ -23,7 +24,7 @@ member ||--o{ tasks : "many"
 member ||--|{ task_assigned_members : "many"
 member {
   int id PK
-  string name
+  string skack_name
 }
 
 tasks ||--|{ task_assigned_members : "many"
@@ -92,6 +93,11 @@ day {
 
 ### 考えたこと
 
+- Slack のワークスペース情報、チャンネル情報を保持する必要があるか
+  - 結論
+    - 不要
+  - 理由
+    - サービスの概要を見る限り、Slack アプリケーションから直接DMを送っているように見えるため
 - ユーザーの命名を何にするか？
   - 結論
     - member とする
