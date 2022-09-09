@@ -20,7 +20,7 @@
 erDiagram
 
 member ||--o{ tasks : "many"
-member }|--|| task_assigned_members : "many"
+member ||--|{ task_assigned_members : "many"
 member {
   int id PK
   string name
