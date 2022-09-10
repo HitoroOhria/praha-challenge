@@ -1,6 +1,5 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [課題1](#%E8%AA%B2%E9%A1%8C1)
     - [仕様](#%E4%BB%95%E6%A7%98)
@@ -9,7 +8,7 @@
       - [テーブル構成](#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E6%A7%8B%E6%88%90)
     - [システムの説明](#%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AE%E8%AA%AC%E6%98%8E)
       - [Redis の役割](#redis-%E3%81%AE%E5%BD%B9%E5%89%B2)
-      - [バッチでタスク取得 → リマンド処理](#%E3%83%90%E3%83%83%E3%83%81%E3%81%A7%E3%82%BF%E3%82%B9%E3%82%AF%E5%8F%96%E5%BE%97-%E2%86%92-%E3%83%AA%E3%83%9E%E3%83%B3%E3%83%89%E5%87%A6%E7%90%86)
+      - [バッチでリマンド処理](#%E3%83%90%E3%83%83%E3%83%81%E3%81%A7%E3%83%AA%E3%83%9E%E3%83%B3%E3%83%89%E5%87%A6%E7%90%86)
       - [タスクの追加](#%E3%82%BF%E3%82%B9%E3%82%AF%E3%81%AE%E8%BF%BD%E5%8A%A0)
       - [タスクの更新](#%E3%82%BF%E3%82%B9%E3%82%AF%E3%81%AE%E6%9B%B4%E6%96%B0)
     - [テーブルの説明](#%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E8%AA%AC%E6%98%8E)
@@ -132,7 +131,7 @@ Redis では `{"リマンド送信日時": "送信対象のタスクIDのリス�
 }
 ```
 
-#### バッチでタスク取得 → リマンド処理
+#### バッチでリマンド処理
 
 1. Redis から現在時刻をキーにして、送信対象のタスクID一覧を取得
 2. DB からタスクIDに一致するタスクを取得
