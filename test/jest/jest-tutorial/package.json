@@ -15,5 +15,8 @@
     "@jest/globals": "^29.4.1",
     "babel-jest": "^29.4.1",
     "ts-jest": "^29.0.5"
+  },
+  "dependencies": {
+    "axios": "^1.2.5"
   }
 }
