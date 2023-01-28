@@ -7,5 +7,10 @@
     "test": "jest"
   },
   "author": "hiroto.ohira <hiroto100114@gmail.com> (http://hirotoohira.link/)",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.4.1"
+  }
 }
