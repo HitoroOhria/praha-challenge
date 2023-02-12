@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Board } from "./Board";
+import "./index.css";
 
 // type GameProps = {
 //   history: [{
@@ -9,7 +10,7 @@ import { Board } from "./Board";
 //   xIsNext: true,
 // }
 
-export const Game = (props) => {
+export const Game = () => {
   const [history, setHistory] = useState([
     {
       squares: Array(9).fill(null),
