@@ -2,17 +2,31 @@ type CalculationKind = "add" | "subtract" | "multiply" | "divide";
 
 export const calculate = (
   kind: CalculationKind,
-  ...numbers: number[]
+  ...args: any[]
 ): number | string => {
+  if (args.length > 30) {
+    throw new Error("too many args");
+  }
+
+  args.forEach((num) => {
+    if (typeof num !== "number") {
+      throw new Error("integer is required");
+    }
+
+    if (!Number.isInteger(num)) {
+      throw new Error("integer is required");
+    }
+  });
+
   switch (kind) {
     case "add":
-      return add(...numbers);
+      return add(...args);
     case "subtract":
-      return subtract(...numbers);
+      return subtract(...args);
     case "multiply":
-      return multiply(...numbers);
+      return multiply(...args);
     case "divide":
-      return divide(...numbers);
+      return divide(...args);
     default:
       return 0;
   }

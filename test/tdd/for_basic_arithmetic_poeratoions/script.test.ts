@@ -8,6 +8,30 @@ describe("jest test", () => {
 });
 
 describe("calculate", () => {
+  describe("common", () => {
+    test("'1' を渡すと、エラーを返す", () => {
+      expect(() => calculate("add", "1")).toThrow(/integer is required/);
+    });
+
+    test("1 と '1' を渡すと、エラーを返す", () => {
+      expect(() => calculate("add", 1, "1")).toThrow(/integer is required/);
+    });
+
+    test("3.3 を渡すと、エラーを返す", () => {
+      expect(() => calculate("add", 3.3)).toThrow(/integer is required/);
+    });
+
+    test("1 と 3.3 を渡すと、エラーを返す", () => {
+      expect(() => calculate("add", 1, 3.3)).toThrow(/integer is required/);
+    });
+
+    test("31個 以上の値を渡すと、エラーを返す", () => {
+      const numbers = [...Array(31)].map((_, i) => i + 1);
+
+      expect(() => calculate("add", ...numbers)).toThrow(/too many args/);
+    });
+  });
+
   describe("add", () => {
     test("0 を渡すと、0 が返る", () => {
       expect(calculate("add", 0)).toBe(0);
