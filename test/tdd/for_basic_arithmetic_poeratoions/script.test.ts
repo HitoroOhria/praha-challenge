@@ -87,4 +87,48 @@ describe("calculate", () => {
       expect(calculate("divide", 1002, 1)).toBe(1001);
     });
   });
+
+  describe("multiply", () => {
+    test("0 を渡すと、0 が返る", () => {
+      expect(calculate("multiply", 0)).toBe(0);
+    });
+
+    test("0 と 0 を渡すと、0 が返る", () => {
+      expect(calculate("multiply", 0, 0)).toBe(0);
+    });
+
+    test("0 と 1 を渡すと、0 が返る", () => {
+      expect(calculate("multiply", 0, 1)).toBe(0);
+    });
+
+    test("1 と 0 を渡すと、0 が返る", () => {
+      expect(calculate("multiply", 1, 0)).toBe(0);
+    });
+
+    test("1 と 1 を渡すと、1 が返る", () => {
+      expect(calculate("multiply", 1, 1)).toBe(1);
+    });
+
+    test("2 と 2 を渡すと、4 が返る", () => {
+      expect(calculate("multiply", 2, 2)).toBe(4);
+    });
+
+    test("2 と 2 と 2 を渡すと、8 が返る", () => {
+      expect(calculate("multiply", 2, 2, 2)).toBe(8);
+    });
+
+    test("1 ~ 30 まで 30個 の数値を渡すと、negative number が返る", () => {
+      const numbers = [...Array(30)].map((_, i) => i + 1);
+
+      expect(calculate("multiply", ...numbers)).toBe("big big number");
+    });
+    //
+    test("1000 と 1 を渡すと、1000 が返る", () => {
+      expect(calculate("multiply", 1000, 1)).toBe(1000);
+    });
+
+    test("1001 と 1 を渡すと、1001 が返る", () => {
+      expect(calculate("multiply", 1001, 1)).toBe("big big number");
+    });
+  });
 });

@@ -9,6 +9,8 @@ export const calculate = (
       return add(...numbers);
     case "divide":
       return divide(...numbers);
+    case "multiply":
+      return multiply(...numbers);
     default:
       return 0;
   }
@@ -17,11 +19,25 @@ export const calculate = (
 const add = (...numbers: number[]): number | string => {
   const result = numbers.reduce((pre, cur) => pre + cur);
 
-  return result > 1000 ? "big big number" : result;
+  return checkBigNumber(result);
 };
 
 const divide = (...numbers: number[]): number | string => {
   const result = numbers.reduce((pre, cur) => pre - cur);
 
-  return result < 0 ? "negative number" : result;
+  return checkNegativeNumber(result);
+};
+
+const multiply = (...numbers: number[]): number | string => {
+  const result = numbers.reduce((pre, cur) => pre * cur);
+
+  return checkBigNumber(result);
+};
+
+const checkBigNumber = (num: number): number | string => {
+  return num > 1000 ? "big big number" : num;
+};
+
+const checkNegativeNumber = (num: number): number | string => {
+  return num < 0 ? "negative number" : num;
 };
