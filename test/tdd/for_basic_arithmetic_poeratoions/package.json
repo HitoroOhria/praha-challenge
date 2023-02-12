@@ -1,0 +1,11 @@
+{
+  "name": "for_basic_arithmetic_poeratoions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hiroto.ohira <hiroto100114@gmail.com> (http://hirotoohira.link/)",
+  "license": "ISC"
+}
